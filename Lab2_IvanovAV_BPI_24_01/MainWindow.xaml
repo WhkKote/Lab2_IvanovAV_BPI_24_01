@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="Расчёт формул"
         Width="920"
-        Height="720"
+        Height="900"
         MinWidth="820"
         MinHeight="600"
         WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
         WindowStyle="None"
         ResizeMode="CanResize"
         Background="{StaticResource WindowBackgroundBrush}"
@@ -161,8 +162,8 @@
                         <Grid>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="285"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -180,7 +181,7 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula1Image"
-                                       Height="48"
+                                       Height="72"
                                        Stretch="Uniform"/>
 
                             </Border>
@@ -227,8 +228,8 @@
                         <Grid>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="285"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -246,7 +247,7 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula2Image"
-                                       Height="48"
+                                       Height="72"
                                        Stretch="Uniform"/>
 
                             </Border>
@@ -323,8 +324,8 @@
                         <Grid>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="285"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -342,7 +343,7 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula3Image"
-                                       Height="54"
+                                       Height="76"
                                        Stretch="Uniform"/>
 
                             </Border>
@@ -427,8 +428,8 @@
                         <Grid>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="285"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -446,7 +447,7 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula4Image"
-                                       Height="60"
+                                       Height="82"
                                        Stretch="Uniform"/>
 
                             </Border>
@@ -523,8 +524,8 @@
                         <Grid>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="285"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -542,7 +543,7 @@
                                     Padding="6">
 
                                 <Image x:Name="Variant4Image"
-                                       Height="64"
+                                       Height="82"
                                        Stretch="Uniform"/>
 
                             </Border>
