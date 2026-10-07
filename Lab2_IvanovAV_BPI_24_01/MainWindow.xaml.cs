@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace Lab2_IvanovAV_BPI_24_01
 {
@@ -11,6 +13,12 @@ namespace Lab2_IvanovAV_BPI_24_01
         public MainWindow()
         {
             InitializeComponent();
+
+            Formula1Image.Source = ByteArrayToImageSource(Properties.Resources.p1);
+            Formula2Image.Source = ByteArrayToImageSource(Properties.Resources.p2);
+            Formula3Image.Source = ByteArrayToImageSource(Properties.Resources.p3);
+            Formula4Image.Source = ByteArrayToImageSource(Properties.Resources.p4);
+            Variant4Image.Source = ByteArrayToImageSource(Properties.Resources.p5);
 
             Formula1FComboBox.Items.Add(4);
             Formula1FComboBox.Items.Add(5);
@@ -39,13 +47,27 @@ namespace Lab2_IvanovAV_BPI_24_01
             Formula4CComboBox.Items.Add(5);
         }
 
+        private BitmapImage ByteArrayToImageSource(byte[] data)
+        {
+            using MemoryStream memory = new MemoryStream(data);
+
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.StreamSource = memory;
+            image.EndInit();
+            image.Freeze();
+
+            return image;
+        }
+
         private void Calc_Click(object sender, RoutedEventArgs e)
         {
             ResultTextBlock.Text = string.Empty;
 
             try
             {
-                Formula formula = null;
+                Formula formula;
 
                 if (Formula1RadioButton.IsChecked == true)
                 {

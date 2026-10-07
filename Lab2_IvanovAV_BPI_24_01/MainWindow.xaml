@@ -54,7 +54,6 @@
                                 VerticalAlignment="Center"
                                 Margin="14,0,0,0">
 
-
                         <TextBlock Text="Расчёт формул"
                                    Foreground="{StaticResource TextBrush}"
                                    FontSize="13"
@@ -181,7 +180,6 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula1Image"
-                                       Source="Images/p1.png"
                                        Height="48"
                                        Stretch="Uniform"/>
 
@@ -248,7 +246,6 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula2Image"
-                                       Source="Images/p2.png"
                                        Height="48"
                                        Stretch="Uniform"/>
 
@@ -345,7 +342,6 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula3Image"
-                                       Source="Images/p3.png"
                                        Height="54"
                                        Stretch="Uniform"/>
 
@@ -450,7 +446,6 @@
                                     Padding="6">
 
                                 <Image x:Name="Formula4Image"
-                                       Source="Images/p4.png"
                                        Height="60"
                                        Stretch="Uniform"/>
 
@@ -547,7 +542,6 @@
                                     Padding="6">
 
                                 <Image x:Name="Variant4Image"
-                                       Source="Images/p5.png"
                                        Height="64"
                                        Stretch="Uniform"/>
 
