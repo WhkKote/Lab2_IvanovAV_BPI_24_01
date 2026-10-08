@@ -53,7 +53,16 @@ namespace Lab2_IvanovAV_BPI_24_01
                 pixels[i + 2] = (byte)(255 - pixels[i + 2]);
             }
 
-            BitmapSource invertedImage = BitmapSource.Create(convertedImage.PixelWidth, convertedImage.PixelHeight, convertedImage.DpiX, convertedImage.DpiY, PixelFormats.Bgra32, null, pixels, stride);
+            BitmapSource invertedImage = BitmapSource.Create(
+                convertedImage.PixelWidth,
+                convertedImage.PixelHeight,
+                convertedImage.DpiX,
+                convertedImage.DpiY,
+                PixelFormats.Bgra32,
+                null,
+                pixels,
+                stride);
+
             invertedImage.Freeze();
 
             return invertedImage;
@@ -75,7 +84,11 @@ namespace Lab2_IvanovAV_BPI_24_01
                     if (Formula1FComboBox.SelectedItem == null)
                         throw new ArgumentException("Выберите значение F.");
 
-                    double a = double.Parse(Formula1ATextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double a = double.Parse(
+                        Formula1ATextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
                     int f = Convert.ToInt32(Formula1FComboBox.SelectedItem);
 
                     if (double.IsNaN(a) || double.IsInfinity(a))
@@ -94,11 +107,20 @@ namespace Lab2_IvanovAV_BPI_24_01
                     if (Formula2FComboBox.SelectedItem == null)
                         throw new ArgumentException("Выберите значение F.");
 
-                    double a = double.Parse(Formula2ATextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
-                    double b = double.Parse(Formula2BTextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double a = double.Parse(
+                        Formula2ATextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
+                    double b = double.Parse(
+                        Formula2BTextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
                     int f = Convert.ToInt32(Formula2FComboBox.SelectedItem);
 
-                    if (double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b))
+                    if (double.IsNaN(a) || double.IsInfinity(a) ||
+                        double.IsNaN(b) || double.IsInfinity(b))
                         throw new ArgumentException("Значения A и B должны быть конечными числами.");
 
                     formula = new Formula2(a, b, f);
@@ -117,12 +139,21 @@ namespace Lab2_IvanovAV_BPI_24_01
                     if (Formula3DComboBox.SelectedItem == null)
                         throw new ArgumentException("Выберите значение D.");
 
-                    double a = double.Parse(Formula3ATextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
-                    double b = double.Parse(Formula3BTextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double a = double.Parse(
+                        Formula3ATextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
+                    double b = double.Parse(
+                        Formula3BTextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
                     int c = Convert.ToInt32(Formula3CComboBox.SelectedItem);
                     int d = Convert.ToInt32(Formula3DComboBox.SelectedItem);
 
-                    if (double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b))
+                    if (double.IsNaN(a) || double.IsInfinity(a) ||
+                        double.IsNaN(b) || double.IsInfinity(b))
                         throw new ArgumentException("Значения A и B должны быть конечными числами.");
 
                     formula = new Formula3(a, b, c, d);
@@ -138,7 +169,11 @@ namespace Lab2_IvanovAV_BPI_24_01
                     if (Formula4DTextBox.Text.Trim() == string.Empty)
                         throw new ArgumentException("Введите значение D.");
 
-                    double a = double.Parse(Formula4ATextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double a = double.Parse(
+                        Formula4ATextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
                     int c = Convert.ToInt32(Formula4CComboBox.SelectedItem);
                     int d = int.Parse(Formula4DTextBox.Text.Trim());
 
@@ -169,9 +204,21 @@ namespace Lab2_IvanovAV_BPI_24_01
 
                     int n = int.Parse(Variant4NTextBox.Text.Trim());
                     int k = int.Parse(Variant4KTextBox.Text.Trim());
-                    double x = double.Parse(Variant4XTextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
-                    double f = double.Parse(Variant4FTextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
-                    double y = double.Parse(Variant4YTextBox.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+
+                    double x = double.Parse(
+                        Variant4XTextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
+                    double f = double.Parse(
+                        Variant4FTextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
+
+                    double y = double.Parse(
+                        Variant4YTextBox.Text.Trim().Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
 
                     if (n <= 0)
                         throw new ArgumentException("Значение N должно быть больше 0.");
@@ -225,7 +272,9 @@ namespace Lab2_IvanovAV_BPI_24_01
                 textBox == Variant4NTextBox ||
                 textBox == Variant4KTextBox;
 
-            string currentText = textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength);
+            string currentText = textBox.Text.Remove(
+                textBox.SelectionStart,
+                textBox.SelectionLength);
 
             foreach (char symbol in e.Text)
             {
@@ -292,7 +341,10 @@ namespace Lab2_IvanovAV_BPI_24_01
                 }
                 else
                 {
-                    double value = double.Parse(text.Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture);
+                    double value = double.Parse(
+                        text.Replace(',', '.'),
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture);
 
                     if (double.IsNaN(value) || double.IsInfinity(value))
                         throw new ArgumentException("Введите конечное число.");
@@ -317,16 +369,7 @@ namespace Lab2_IvanovAV_BPI_24_01
             RadioButton radioButton = (RadioButton)sender;
             bool lightTheme = radioButton.Tag?.ToString() == "Light";
 
-            if (lightTheme)
-            {
-                if (Application.Current.Resources.MergedDictionaries.Count == 1)
-                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("Styles/LightTheme.xaml", UriKind.Relative) });
-            }
-            else
-            {
-                if (Application.Current.Resources.MergedDictionaries.Count > 1)
-                    Application.Current.Resources.MergedDictionaries.RemoveAt(1);
-            }
+            ((App)Application.Current).ChangeTheme(lightTheme);
 
             if (Formula1Image == null) return;
 
@@ -359,7 +402,9 @@ namespace Lab2_IvanovAV_BPI_24_01
 
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            WindowState = WindowState == WindowState.Maximized
+                ? WindowState.Normal
+                : WindowState.Maximized;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
