@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Lab2_IvanovAV_BPI_24_01
@@ -27,7 +28,7 @@ namespace Lab2_IvanovAV_BPI_24_01
             Formula4CComboBox.ItemsSource = new[] { 0, 1, 2, 3, 4, 5 };
         }
 
-        private BitmapImage ByteArrayToImageSource(byte[] data)
+        private BitmapSource ByteArrayToImageSource(byte[] data, bool invert = false)
         {
             using MemoryStream memory = new MemoryStream(data);
 
@@ -38,7 +39,24 @@ namespace Lab2_IvanovAV_BPI_24_01
             image.EndInit();
             image.Freeze();
 
-            return image;
+            if (!invert) return image;
+
+            FormatConvertedBitmap convertedImage = new FormatConvertedBitmap(image, PixelFormats.Bgra32, null, 0);
+            int stride = convertedImage.PixelWidth * 4;
+            byte[] pixels = new byte[stride * convertedImage.PixelHeight];
+            convertedImage.CopyPixels(pixels, stride, 0);
+
+            for (int i = 0; i < pixels.Length; i += 4)
+            {
+                pixels[i] = (byte)(255 - pixels[i]);
+                pixels[i + 1] = (byte)(255 - pixels[i + 1]);
+                pixels[i + 2] = (byte)(255 - pixels[i + 2]);
+            }
+
+            BitmapSource invertedImage = BitmapSource.Create(convertedImage.PixelWidth, convertedImage.PixelHeight, convertedImage.DpiX, convertedImage.DpiY, PixelFormats.Bgra32, null, pixels, stride);
+            invertedImage.Freeze();
+
+            return invertedImage;
         }
 
         private void Calc_Click(object sender, RoutedEventArgs e)
@@ -292,6 +310,31 @@ namespace Lab2_IvanovAV_BPI_24_01
             {
                 ResultTextBlock.Text = "Ошибка: " + ex.Message;
             }
+        }
+
+        private void ThemeRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            bool lightTheme = radioButton.Tag?.ToString() == "Light";
+
+            if (lightTheme)
+            {
+                if (Application.Current.Resources.MergedDictionaries.Count == 1)
+                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("Styles/LightTheme.xaml", UriKind.Relative) });
+            }
+            else
+            {
+                if (Application.Current.Resources.MergedDictionaries.Count > 1)
+                    Application.Current.Resources.MergedDictionaries.RemoveAt(1);
+            }
+
+            if (Formula1Image == null) return;
+
+            Formula1Image.Source = ByteArrayToImageSource(Properties.Resources.p1, lightTheme);
+            Formula2Image.Source = ByteArrayToImageSource(Properties.Resources.p2, lightTheme);
+            Formula3Image.Source = ByteArrayToImageSource(Properties.Resources.p3, lightTheme);
+            Formula4Image.Source = ByteArrayToImageSource(Properties.Resources.p4, lightTheme);
+            Variant4Image.Source = ByteArrayToImageSource(Properties.Resources.p5, lightTheme);
         }
 
         private void FormulaRadioButton_Checked(object sender, RoutedEventArgs e)

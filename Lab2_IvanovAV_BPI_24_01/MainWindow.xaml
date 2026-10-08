@@ -14,7 +14,7 @@
         WindowState="Normal"
         WindowStyle="None"
         ResizeMode="CanResize"
-        Background="{StaticResource WindowBackgroundBrush}"
+        Background="{DynamicResource WindowBackgroundBrush}"
         FontFamily="Segoe UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True">
@@ -27,8 +27,8 @@
                             UseAeroCaptionButtons="False"/>
     </shell:WindowChrome.WindowChrome>
 
-    <Border Background="{StaticResource WindowBackgroundBrush}"
-            BorderBrush="#303640"
+    <Border Background="{DynamicResource WindowBackgroundBrush}"
+            BorderBrush="{DynamicResource BorderBrushDark}"
             BorderThickness="1">
 
         <Grid>
@@ -38,10 +38,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
             <Border Grid.Row="0"
-                    Background="{StaticResource TitleBarBrush}"
-                    BorderBrush="#252A31"
+                    Background="{DynamicResource TitleBarBrush}"
+                    BorderBrush="{DynamicResource BorderBrushDark}"
                     BorderThickness="0,0,0,1">
 
                 <Grid>
@@ -57,7 +56,7 @@
                                 Margin="14,0,0,0">
 
                         <TextBlock Text="Расчёт формул"
-                                   Foreground="{StaticResource TextBrush}"
+                                   Foreground="{DynamicResource TextBrush}"
                                    FontSize="13"
                                    VerticalAlignment="Center"/>
 
@@ -65,14 +64,32 @@
 
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
+                                VerticalAlignment="Center"
                                 shell:WindowChrome.IsHitTestVisibleInChrome="True">
+
+                        <RadioButton x:Name="DarkThemeRadioButton"
+                                     GroupName="ThemeGroup"
+                                     Content="Тёмная"
+                                     Tag="Dark"
+                                     IsChecked="True"
+                                     Margin="0,0,14,0"
+                                     VerticalAlignment="Center"
+                                     Checked="ThemeRadioButton_Checked"/>
+
+                        <RadioButton x:Name="LightThemeRadioButton"
+                                     GroupName="ThemeGroup"
+                                     Content="Светлая"
+                                     Tag="Light"
+                                     Margin="0,0,16,0"
+                                     VerticalAlignment="Center"
+                                     Checked="ThemeRadioButton_Checked"/>
 
                         <Button Style="{StaticResource WindowButtonStyle}"
                                 Click="MinimizeButton_Click">
 
                             <Border Width="10"
                                     Height="1"
-                                    Background="{StaticResource TextBrush}"
+                                    Background="{DynamicResource TextBrush}"
                                     VerticalAlignment="Center"
                                     SnapsToDevicePixels="True"/>
 
@@ -84,7 +101,7 @@
 
                             <Rectangle Width="10"
                                        Height="10"
-                                       Stroke="{StaticResource TextBrush}"
+                                       Stroke="{DynamicResource TextBrush}"
                                        StrokeThickness="1"
                                        Fill="Transparent"
                                        SnapsToDevicePixels="True"/>
@@ -97,11 +114,11 @@
                             <Grid Width="11"
                                   Height="11">
 
-                                <Path Stroke="{StaticResource TextBrush}"
+                                <Path Stroke="{DynamicResource TextBrush}"
                                       StrokeThickness="1.2"
                                       Data="M 0 0 L 11 11"/>
 
-                                <Path Stroke="{StaticResource TextBrush}"
+                                <Path Stroke="{DynamicResource TextBrush}"
                                       StrokeThickness="1.2"
                                       Data="M 11 0 L 0 11"/>
 
@@ -115,7 +132,6 @@
 
             </Border>
 
-            <!-- ОСНОВНАЯ ОБЛАСТЬ -->
             <Grid Grid.Row="1"
                   Margin="22">
 
@@ -131,31 +147,28 @@
 
                 </Grid.RowDefinitions>
 
-                <!-- ЗАГОЛОВОК -->
                 <StackPanel Grid.Row="0">
 
                     <TextBlock Text="Расчёт формул"
                                FontSize="28"
                                FontWeight="Bold"
-                               Foreground="{StaticResource TextBrush}"/>
+                               Foreground="{DynamicResource TextBrush}"/>
 
                     <TextBlock Text="Выберите формулу, введите значения параметров и нажмите «Рассчитать»"
                                Margin="0,3,0,0"
                                FontSize="14"
-                               Foreground="{StaticResource SecondaryTextBrush}"/>
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
 
                 </StackPanel>
 
-                <!-- СКРОЛЛЕР ТОЛЬКО ДЛЯ ФОРМУЛ -->
                 <ScrollViewer Grid.Row="2"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled">
 
                     <StackPanel Margin="0,0,8,0">
 
-                        <!-- ФОРМУЛА 1 -->
-                        <Border Background="{StaticResource CardBackgroundBrush}"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="10"
                                 Padding="14"
@@ -177,8 +190,8 @@
 
                                 <Border Grid.Column="1"
                                         Margin="6,0,14,0"
-                                        Background="#191D22"
-                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        Background="{DynamicResource FormulaBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrushDark}"
                                         BorderThickness="1"
                                         CornerRadius="7"
                                         Padding="6">
@@ -224,9 +237,8 @@
 
                         </Border>
 
-                        <!-- ФОРМУЛА 2 -->
-                        <Border Background="{StaticResource CardBackgroundBrush}"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="10"
                                 Padding="14"
@@ -248,8 +260,8 @@
 
                                 <Border Grid.Column="1"
                                         Margin="6,0,14,0"
-                                        Background="#191D22"
-                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        Background="{DynamicResource FormulaBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrushDark}"
                                         BorderThickness="1"
                                         CornerRadius="7"
                                         Padding="6">
@@ -325,9 +337,8 @@
 
                         </Border>
 
-                        <!-- ФОРМУЛА 3 -->
-                        <Border Background="{StaticResource CardBackgroundBrush}"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="10"
                                 Padding="14"
@@ -349,8 +360,8 @@
 
                                 <Border Grid.Column="1"
                                         Margin="6,0,14,0"
-                                        Background="#191D22"
-                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        Background="{DynamicResource FormulaBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrushDark}"
                                         BorderThickness="1"
                                         CornerRadius="7"
                                         Padding="6">
@@ -435,9 +446,8 @@
 
                         </Border>
 
-                        <!-- ФОРМУЛА 4 -->
-                        <Border Background="{StaticResource CardBackgroundBrush}"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="10"
                                 Padding="14"
@@ -459,8 +469,8 @@
 
                                 <Border Grid.Column="1"
                                         Margin="6,0,14,0"
-                                        Background="#191D22"
-                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        Background="{DynamicResource FormulaBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrushDark}"
                                         BorderThickness="1"
                                         CornerRadius="7"
                                         Padding="6">
@@ -536,9 +546,9 @@
 
                         </Border>
 
-                        <!-- ВАРИАНТ №4 -->
-                        <Border Background="{StaticResource CardBackgroundBrush}"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+
+                        <Border Background="{DynamicResource CardBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="10"
                                 Padding="14">
@@ -559,8 +569,8 @@
 
                                 <Border Grid.Column="1"
                                         Margin="6,0,14,0"
-                                        Background="#191D22"
-                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        Background="{DynamicResource FormulaBackgroundBrush}"
+                                        BorderBrush="{DynamicResource BorderBrushDark}"
                                         BorderThickness="1"
                                         CornerRadius="7"
                                         Padding="6">
@@ -666,7 +676,6 @@
 
                 </ScrollViewer>
 
-                <!-- КНОПКА ВСЕГДА ВИДНА -->
                 <Button x:Name="CalcButton"
                         Grid.Row="4"
                         Content="Рассчитать"
@@ -674,10 +683,9 @@
                         HorizontalAlignment="Center"
                         Click="Calc_Click"/>
 
-                <!-- РЕЗУЛЬТАТ ВСЕГДА ВИДЕН -->
                 <Border Grid.Row="6"
-                        Background="{StaticResource CardBackgroundBrush}"
-                        BorderBrush="{StaticResource BorderBrushDark}"
+                        Background="{DynamicResource CardBackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrushDark}"
                         BorderThickness="1"
                         CornerRadius="10"
                         Padding="14">
@@ -687,11 +695,11 @@
                         <TextBlock Text="Результат"
                                    FontSize="15"
                                    FontWeight="SemiBold"
-                                   Foreground="{StaticResource TextBrush}"
+                                   Foreground="{DynamicResource TextBrush}"
                                    Margin="0,0,0,8"/>
 
-                        <Border Background="#191D22"
-                                BorderBrush="{StaticResource BorderBrushDark}"
+                        <Border Background="{DynamicResource InputBackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrushDark}"
                                 BorderThickness="1"
                                 CornerRadius="7"
                                 Padding="12">
@@ -699,7 +707,7 @@
                             <TextBlock x:Name="ResultTextBlock"
                                        MinHeight="24"
                                        FontSize="15"
-                                       Foreground="{StaticResource TextBrush}"
+                                       Foreground="{DynamicResource TextBrush}"
                                        TextWrapping="Wrap"/>
 
                         </Border>
