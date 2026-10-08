@@ -20,31 +20,11 @@ namespace Lab2_IvanovAV_BPI_24_01
             Formula4Image.Source = ByteArrayToImageSource(Properties.Resources.p4);
             Variant4Image.Source = ByteArrayToImageSource(Properties.Resources.p5);
 
-            Formula1FComboBox.Items.Add(4);
-            Formula1FComboBox.Items.Add(5);
-            Formula1FComboBox.Items.Add(6);
-            Formula1FComboBox.Items.Add(7);
-            Formula1FComboBox.Items.Add(8);
-            Formula1FComboBox.Items.Add(9);
-
-            Formula2FComboBox.Items.Add(10);
-            Formula2FComboBox.Items.Add(20);
-            Formula2FComboBox.Items.Add(30);
-            Formula2FComboBox.Items.Add(40);
-
-            Formula3CComboBox.Items.Add(0);
-            Formula3CComboBox.Items.Add(1);
-
-            Formula3DComboBox.Items.Add(-1);
-            Formula3DComboBox.Items.Add(0);
-            Formula3DComboBox.Items.Add(1);
-
-            Formula4CComboBox.Items.Add(0);
-            Formula4CComboBox.Items.Add(1);
-            Formula4CComboBox.Items.Add(2);
-            Formula4CComboBox.Items.Add(3);
-            Formula4CComboBox.Items.Add(4);
-            Formula4CComboBox.Items.Add(5);
+            Formula1FComboBox.ItemsSource = new[] { 4, 5, 6, 7, 8, 9 };
+            Formula2FComboBox.ItemsSource = new[] { 10, 20, 30, 40 };
+            Formula3CComboBox.ItemsSource = new[] { 0, 1 };
+            Formula3DComboBox.ItemsSource = new[] { -1, 0, 1 };
+            Formula4CComboBox.ItemsSource = new[] { 0, 1, 2, 3, 4, 5 };
         }
 
         private BitmapImage ByteArrayToImageSource(byte[] data)
@@ -314,6 +294,21 @@ namespace Lab2_IvanovAV_BPI_24_01
             }
         }
 
+        private void FormulaRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Formula1InputGrid.IsEnabled = Formula1RadioButton.IsChecked == true;
+            Formula2InputGrid.IsEnabled = Formula2RadioButton.IsChecked == true;
+            Formula3InputGrid.IsEnabled = Formula3RadioButton.IsChecked == true;
+            Formula4InputGrid.IsEnabled = Formula4RadioButton.IsChecked == true;
+            Variant4InputGrid.IsEnabled = Variant4RadioButton.IsChecked == true;
+
+            Formula1InputGrid.Opacity = Formula1InputGrid.IsEnabled ? 1 : 0.4;
+            Formula2InputGrid.Opacity = Formula2InputGrid.IsEnabled ? 1 : 0.4;
+            Formula3InputGrid.Opacity = Formula3InputGrid.IsEnabled ? 1 : 0.4;
+            Formula4InputGrid.Opacity = Formula4InputGrid.IsEnabled ? 1 : 0.4;
+            Variant4InputGrid.Opacity = Variant4InputGrid.IsEnabled ? 1 : 0.4;
+        }
+
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -327,6 +322,11 @@ namespace Lab2_IvanovAV_BPI_24_01
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Formula3BTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

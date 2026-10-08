@@ -38,6 +38,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
             <Border Grid.Row="0"
                     Background="{StaticResource TitleBarBrush}"
                     BorderBrush="#252A31"
@@ -114,153 +115,84 @@
 
             </Border>
 
-            <ScrollViewer Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled">
+            <!-- ОСНОВНАЯ ОБЛАСТЬ -->
+            <Grid Grid.Row="1"
+                  Margin="22">
 
-                <Grid Margin="22">
+                <Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="14"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="9"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="9"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="9"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="9"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="14"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="Auto"/>
 
-                    <StackPanel Grid.Row="0">
+                </Grid.RowDefinitions>
 
-                        <TextBlock Text="Расчёт формул"
-                                   FontSize="28"
-                                   FontWeight="Bold"
-                                   Foreground="{StaticResource TextBrush}"/>
+                <!-- ЗАГОЛОВОК -->
+                <StackPanel Grid.Row="0">
 
-                        <TextBlock Text="Выберите формулу, введите значения параметров и нажмите «Рассчитать»"
-                                   Margin="0,3,0,0"
-                                   FontSize="14"
-                                   Foreground="{StaticResource SecondaryTextBrush}"/>
+                    <TextBlock Text="Расчёт формул"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextBrush}"/>
 
-                    </StackPanel>
+                    <TextBlock Text="Выберите формулу, введите значения параметров и нажмите «Рассчитать»"
+                               Margin="0,3,0,0"
+                               FontSize="14"
+                               Foreground="{StaticResource SecondaryTextBrush}"/>
 
-                    <Border Grid.Row="2"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
+                </StackPanel>
 
-                        <Grid>
+                <!-- СКРОЛЛЕР ТОЛЬКО ДЛЯ ФОРМУЛ -->
+                <ScrollViewer Grid.Row="2"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"/>
-                                <ColumnDefinition Width="285"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0,0,8,0">
 
-                            <RadioButton x:Name="Formula1RadioButton"
-                                         Grid.Column="0"
-                                         GroupName="FormulaGroup"
-                                         Content="Формула 1"/>
+                        <!-- ФОРМУЛА 1 -->
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="14"
+                                Margin="0,0,0,9">
 
-                            <Border Grid.Column="1"
-                                    Margin="6,0,14,0"
-                                    Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="6">
-
-                                <Image x:Name="Formula1Image"
-                                       Height="72"
-                                       Stretch="Uniform"/>
-
-                            </Border>
-
-                            <Grid Grid.Column="2">
+                            <Grid>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="285"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0"
-                                           Text="A:"
-                                           Style="{StaticResource ParameterLabelStyle}"/>
+                                <RadioButton x:Name="Formula1RadioButton"
+                                             Grid.Column="0"
+                                             GroupName="FormulaGroup"
+                                             Content="Формула 1"
+                                             Checked="FormulaRadioButton_Checked"/>
 
-                                <TextBox x:Name="Formula1ATextBox"
-                                         Grid.Column="1"
-                                         PreviewTextInput="TextBox_PreviewTextInput"
-                                         PreviewKeyDown="TextBox_PreviewKeyDown"
-                                         LostFocus="TextBox_LostFocus"/>
+                                <Border Grid.Column="1"
+                                        Margin="6,0,14,0"
+                                        Background="#191D22"
+                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="7"
+                                        Padding="6">
 
-                                <TextBlock Grid.Column="2"
-                                           Text="F:"
-                                           Style="{StaticResource ParameterLabelStyle}"/>
+                                    <Image x:Name="Formula1Image"
+                                           Height="72"
+                                           Stretch="Uniform"/>
 
-                                <ComboBox x:Name="Formula1FComboBox"
-                                          Grid.Column="3"/>
+                                </Border>
 
-                            </Grid>
-
-                        </Grid>
-
-                    </Border>
-
-                    <Border Grid.Row="4"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"/>
-                                <ColumnDefinition Width="285"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <RadioButton x:Name="Formula2RadioButton"
-                                         Grid.Column="0"
-                                         GroupName="FormulaGroup"
-                                         Content="Формула 2"/>
-
-                            <Border Grid.Column="1"
-                                    Margin="6,0,14,0"
-                                    Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="6">
-
-                                <Image x:Name="Formula2Image"
-                                       Height="72"
-                                       Stretch="Uniform"/>
-
-                            </Border>
-
-                            <Grid Grid.Column="2">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="7"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
+                                <Grid x:Name="Formula1InputGrid"
+                                      Grid.Column="2"
+                                      IsEnabled="False"
+                                      Opacity="0.4">
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -273,336 +205,7 @@
                                                Text="A:"
                                                Style="{StaticResource ParameterLabelStyle}"/>
 
-                                    <TextBox x:Name="Formula2ATextBox"
-                                             Grid.Column="1"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                    <TextBlock Grid.Column="2"
-                                               Text="B:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Formula2BTextBox"
-                                             Grid.Column="3"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                </Grid>
-
-                                <Grid Grid.Row="2">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="170"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="F:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <ComboBox x:Name="Formula2FComboBox"
-                                              Grid.Column="1"/>
-
-                                </Grid>
-
-                            </Grid>
-
-                        </Grid>
-
-                    </Border>
-
-                    <Border Grid.Row="6"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"/>
-                                <ColumnDefinition Width="285"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <RadioButton x:Name="Formula3RadioButton"
-                                         Grid.Column="0"
-                                         GroupName="FormulaGroup"
-                                         Content="Формула 3"/>
-
-                            <Border Grid.Column="1"
-                                    Margin="6,0,14,0"
-                                    Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="6">
-
-                                <Image x:Name="Formula3Image"
-                                       Height="76"
-                                       Stretch="Uniform"/>
-
-                            </Border>
-
-                            <Grid Grid.Column="2">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="7"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="A:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Formula3ATextBox"
-                                             Grid.Column="1"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                    <TextBlock Grid.Column="2"
-                                               Text="B:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Formula3BTextBox"
-                                             Grid.Column="3"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                </Grid>
-
-                                <Grid Grid.Row="2">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="C:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <ComboBox x:Name="Formula3CComboBox"
-                                              Grid.Column="1"/>
-
-                                    <TextBlock Grid.Column="2"
-                                               Text="D:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <ComboBox x:Name="Formula3DComboBox"
-                                              Grid.Column="3"/>
-
-                                </Grid>
-
-                            </Grid>
-
-                        </Grid>
-
-                    </Border>
-
-                    <Border Grid.Row="8"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"/>
-                                <ColumnDefinition Width="285"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <RadioButton x:Name="Formula4RadioButton"
-                                         Grid.Column="0"
-                                         GroupName="FormulaGroup"
-                                         Content="Формула 4"/>
-
-                            <Border Grid.Column="1"
-                                    Margin="6,0,14,0"
-                                    Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="6">
-
-                                <Image x:Name="Formula4Image"
-                                       Height="82"
-                                       Stretch="Uniform"/>
-
-                            </Border>
-
-                            <Grid Grid.Column="2">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="7"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="A:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Formula4ATextBox"
-                                             Grid.Column="1"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                    <TextBlock Grid.Column="2"
-                                               Text="C:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <ComboBox x:Name="Formula4CComboBox"
-                                              Grid.Column="3"/>
-
-                                </Grid>
-
-                                <Grid Grid.Row="2">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="170"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="D:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Formula4DTextBox"
-                                             Grid.Column="1"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                </Grid>
-
-                            </Grid>
-
-                        </Grid>
-
-                    </Border>
-
-                    <Border Grid.Row="10"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
-
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125"/>
-                                <ColumnDefinition Width="285"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <RadioButton x:Name="Variant4RadioButton"
-                                         Grid.Column="0"
-                                         GroupName="FormulaGroup"
-                                         Content="Вариант №4"/>
-
-                            <Border Grid.Column="1"
-                                    Margin="6,0,14,0"
-                                    Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="6">
-
-                                <Image x:Name="Variant4Image"
-                                       Height="82"
-                                       Stretch="Uniform"/>
-
-                            </Border>
-
-                            <Grid Grid.Column="2">
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="7"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="N:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Variant4NTextBox"
-                                             Grid.Column="1"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                    <TextBlock Grid.Column="2"
-                                               Text="K:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Variant4KTextBox"
-                                             Grid.Column="3"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                </Grid>
-
-                                <Grid Grid.Row="2">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="X:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Variant4XTextBox"
+                                    <TextBox x:Name="Formula1ATextBox"
                                              Grid.Column="1"
                                              PreviewTextInput="TextBox_PreviewTextInput"
                                              PreviewKeyDown="TextBox_PreviewKeyDown"
@@ -612,73 +215,500 @@
                                                Text="F:"
                                                Style="{StaticResource ParameterLabelStyle}"/>
 
-                                    <TextBox x:Name="Variant4FTextBox"
-                                             Grid.Column="3"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
-
-                                    <TextBlock Grid.Column="4"
-                                               Text="Y:"
-                                               Style="{StaticResource ParameterLabelStyle}"/>
-
-                                    <TextBox x:Name="Variant4YTextBox"
-                                             Grid.Column="5"
-                                             PreviewTextInput="TextBox_PreviewTextInput"
-                                             PreviewKeyDown="TextBox_PreviewKeyDown"
-                                             LostFocus="TextBox_LostFocus"/>
+                                    <ComboBox x:Name="Formula1FComboBox"
+                                              Grid.Column="3"/>
 
                                 </Grid>
 
                             </Grid>
 
-                        </Grid>
+                        </Border>
 
-                    </Border>
+                        <!-- ФОРМУЛА 2 -->
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="14"
+                                Margin="0,0,0,9">
 
-                    <Button x:Name="CalcButton"
-                            Grid.Row="12"
-                            Content="Рассчитать"
-                            Style="{StaticResource CalcButtonStyle}"
-                            HorizontalAlignment="Center"
-                            Click="Calc_Click"/>
+                            <Grid>
 
-                    <Border Grid.Row="14"
-                            Background="{StaticResource CardBackgroundBrush}"
-                            BorderBrush="{StaticResource BorderBrushDark}"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Padding="14">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="285"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                        <StackPanel>
+                                <RadioButton x:Name="Formula2RadioButton"
+                                             Grid.Column="0"
+                                             GroupName="FormulaGroup"
+                                             Content="Формула 2"
+                                             Checked="FormulaRadioButton_Checked"/>
 
-                            <TextBlock Text="Результат"
+                                <Border Grid.Column="1"
+                                        Margin="6,0,14,0"
+                                        Background="#191D22"
+                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="7"
+                                        Padding="6">
+
+                                    <Image x:Name="Formula2Image"
+                                           Height="72"
+                                           Stretch="Uniform"/>
+
+                                </Border>
+
+                                <Grid x:Name="Formula2InputGrid"
+                                      Grid.Column="2"
+                                      IsEnabled="False"
+                                      Opacity="0.4">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="7"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="A:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula2ATextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="B:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula2BTextBox"
+                                                 Grid.Column="3"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Row="2">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="170"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="F:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <ComboBox x:Name="Formula2FComboBox"
+                                                  Grid.Column="1"/>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- ФОРМУЛА 3 -->
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="14"
+                                Margin="0,0,0,9">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="285"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <RadioButton x:Name="Formula3RadioButton"
+                                             Grid.Column="0"
+                                             GroupName="FormulaGroup"
+                                             Content="Формула 3"
+                                             Checked="FormulaRadioButton_Checked"/>
+
+                                <Border Grid.Column="1"
+                                        Margin="6,0,14,0"
+                                        Background="#191D22"
+                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="7"
+                                        Padding="6">
+
+                                    <Image x:Name="Formula3Image"
+                                           Height="76"
+                                           Stretch="Uniform"/>
+
+                                </Border>
+
+                                <Grid x:Name="Formula3InputGrid"
+                                      Grid.Column="2"
+                                      IsEnabled="False"
+                                      Opacity="0.4">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="7"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="A:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula3ATextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="B:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula3BTextBox"
+                                                 Grid.Column="3"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"
+                                                 TextChanged="Formula3BTextBox_TextChanged"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Row="2">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="C:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <ComboBox x:Name="Formula3CComboBox"
+                                                  Grid.Column="1"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="D:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <ComboBox x:Name="Formula3DComboBox"
+                                                  Grid.Column="3"/>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- ФОРМУЛА 4 -->
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="14"
+                                Margin="0,0,0,9">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="285"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <RadioButton x:Name="Formula4RadioButton"
+                                             Grid.Column="0"
+                                             GroupName="FormulaGroup"
+                                             Content="Формула 4"
+                                             Checked="FormulaRadioButton_Checked"/>
+
+                                <Border Grid.Column="1"
+                                        Margin="6,0,14,0"
+                                        Background="#191D22"
+                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="7"
+                                        Padding="6">
+
+                                    <Image x:Name="Formula4Image"
+                                           Height="82"
+                                           Stretch="Uniform"/>
+
+                                </Border>
+
+                                <Grid x:Name="Formula4InputGrid"
+                                      Grid.Column="2"
+                                      IsEnabled="False"
+                                      Opacity="0.4">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="7"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="A:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula4ATextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="C:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <ComboBox x:Name="Formula4CComboBox"
+                                                  Grid.Column="3"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Row="2">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="170"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="D:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Formula4DTextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- ВАРИАНТ №4 -->
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="14">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="285"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <RadioButton x:Name="Variant4RadioButton"
+                                             Grid.Column="0"
+                                             GroupName="FormulaGroup"
+                                             Content="Вариант №4"
+                                             Checked="FormulaRadioButton_Checked"/>
+
+                                <Border Grid.Column="1"
+                                        Margin="6,0,14,0"
+                                        Background="#191D22"
+                                        BorderBrush="{StaticResource BorderBrushDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="7"
+                                        Padding="6">
+
+                                    <Image x:Name="Variant4Image"
+                                           Height="82"
+                                           Stretch="Uniform"/>
+
+                                </Border>
+
+                                <Grid x:Name="Variant4InputGrid"
+                                      Grid.Column="2"
+                                      IsEnabled="False"
+                                      Opacity="0.4">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="7"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="N:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Variant4NTextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="K:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Variant4KTextBox"
+                                                 Grid.Column="3"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Row="2">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0"
+                                                   Text="X:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Variant4XTextBox"
+                                                 Grid.Column="1"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="F:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Variant4FTextBox"
+                                                 Grid.Column="3"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                        <TextBlock Grid.Column="4"
+                                                   Text="Y:"
+                                                   Style="{StaticResource ParameterLabelStyle}"/>
+
+                                        <TextBox x:Name="Variant4YTextBox"
+                                                 Grid.Column="5"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 PreviewKeyDown="TextBox_PreviewKeyDown"
+                                                 LostFocus="TextBox_LostFocus"/>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+                <!-- КНОПКА ВСЕГДА ВИДНА -->
+                <Button x:Name="CalcButton"
+                        Grid.Row="4"
+                        Content="Рассчитать"
+                        Style="{StaticResource CalcButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Click="Calc_Click"/>
+
+                <!-- РЕЗУЛЬТАТ ВСЕГДА ВИДЕН -->
+                <Border Grid.Row="6"
+                        Background="{StaticResource CardBackgroundBrush}"
+                        BorderBrush="{StaticResource BorderBrushDark}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="14">
+
+                    <StackPanel>
+
+                        <TextBlock Text="Результат"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,0,0,8"/>
+
+                        <Border Background="#191D22"
+                                BorderBrush="{StaticResource BorderBrushDark}"
+                                BorderThickness="1"
+                                CornerRadius="7"
+                                Padding="12">
+
+                            <TextBlock x:Name="ResultTextBlock"
+                                       MinHeight="24"
                                        FontSize="15"
-                                       FontWeight="SemiBold"
                                        Foreground="{StaticResource TextBrush}"
-                                       Margin="0,0,0,8"/>
+                                       TextWrapping="Wrap"/>
 
-                            <Border Background="#191D22"
-                                    BorderBrush="{StaticResource BorderBrushDark}"
-                                    BorderThickness="1"
-                                    CornerRadius="7"
-                                    Padding="12">
+                        </Border>
 
-                                <TextBlock x:Name="ResultTextBlock"
-                                           MinHeight="24"
-                                           FontSize="15"
-                                           Foreground="{StaticResource TextBrush}"
-                                           TextWrapping="Wrap"/>
+                    </StackPanel>
 
-                            </Border>
+                </Border>
 
-                        </StackPanel>
-
-                    </Border>
-
-                </Grid>
-
-            </ScrollViewer>
+            </Grid>
 
         </Grid>
 
